@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Move and Stop GIF Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Erica+One&display=swap" rel="stylesheet">
+    <style>
+        .oi-regular {
+  font-family: "Oi", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+        #gif {
+            position: fixed;
+        }
+        p {
+            text-align: center;
+        }
+        #result {
+            font-family: 'Erica One', sans-serif;
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+        #timer {
+            font-family: 'Erica One', sans-serif;
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body style="background-color: lightblue;" onload="startGame()">
+    <img id="gif" src="giphy.gif" width="200" height="200" style="display: none;">
+    <p id="timer"></p>
+    <p id="result"></p>
+    <script>
+        let startTime, endTime;
+        let timerInterval, moveInterval;
+
+        function startGame() {
+            document.getElementById("gif").style.display = "block";
+            startTime = new Date();
+
+            // Start the timer
+            timerInterval = setInterval(updateTimer, 100);
+
+            // Randomly change the GIF's position at regular intervals
+            moveInterval = setInterval(moveGif, 380);
+
+            // Add event listeners for both touch and click events
+            document.getElementById("gif").addEventListener("touchstart", stopGame);
+            document.getElementById("gif").addEventListener("click", stopGame);
+        }
+
+        function moveGif() {
+            let gif = document.getElementById("gif");
+            let x = Math.floor(Math.random() * (window.innerWidth - gif.width));
+            let y = Math.floor(Math.random() * (window.innerHeight - gif.height));
+            gif.style.left = x + "px";
+            gif.style.top = y + "px";
+        }
+
+        function updateTimer() {
+            let currentTime = new Date();
+            let elapsedTime = currentTime - startTime;
+            let seconds = Math.floor((elapsedTime / 1000) % 60);
+            let minutes = Math.floor(elapsedTime / (1000 * 60));
+            document.getElementById("timer").textContent = "Timer: " + minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+        }
+
+        function stopGame() {
+            clearInterval(timerInterval);
+            clearInterval(moveInterval);
+            endTime = new Date();
+            let gameTime = (endTime - startTime) / 1000;
+            document.getElementById("result").textContent = "You stopped the timer after " + gameTime.toFixed(2) + " seconds."; 
+            document.getElementById("gif").style.display = "none";
+        }
+    </script>
+</body>
+</html>

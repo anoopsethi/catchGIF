@@ -1,0 +1,72 @@
+body {
+    background-color: lightblue;
+    font-family: 'Oi', serif;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 50px;
+    margin: 0;
+}
+
+h1, p {
+    font-family: 'Erica One', serif;
+    color: navy;
+}
+
+p {
+    color: darkblue;
+}
+
+#simba {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+#start-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#start-button:hover {
+    background-color: #45a049;
+}
+
+#result {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 20px;
+    }
+    #simba {
+        width: 150px;
+        height: 150px;
+    }
+    #start-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 16px;
+    }
+    #simba {
+        width: 100px;
+        height: 100px;
+    }
+    #start-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
